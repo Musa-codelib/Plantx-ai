@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>plantx.ai</title>
+    <link rel="stylesheet" href="../static/styles.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/templates/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/templates/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/templates/favicon-16x16.png">
+    <link rel="manifest" href="/templates/site.webmanifest">
+    <link rel="icon" type="image/png" href="/templates/tam.png" sizes="32x32">
+</head>
+<body>
+  <div class="container">
+    <h1>Tomato Disease Detection</h1>
+    <div class="upload-area">
+      <input type="file" id="imageInput" onchange="previewImage(event)">
+      <button onclick="uploadImage()">Detect Disease</button>
+    </div>
+    <div class="result">
+      <h3>Selected Image:</h3>
+      <img id="selectedImage" src="#" alt="">
+    </div>
+    <div class="disease">
+      <h3></h3>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    function previewImage(event) {
+      const selectedImage = document.getElementById('selectedImage');
+      selectedImage.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    function uploadImage() {
+      const fileInput = document.getElementById('imageInput');
+      const file = fileInput.files[0];
+      
+      const formData = new FormData();
+      formData.append('image', file);
+
+      fetch('/upload', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        const resultDiv = document.getElementById('result');
+        resultDiv.textContent = `Disease: ${data.disease}`;
+      })
+      .catch(error => console.error('Error:', error));
+    }
+  </script>
+</body>
+</html>
