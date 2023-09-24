@@ -1,5 +1,5 @@
 # Plantx-ai
-Ai in agriculture. Version 1 is about detecting Tomato(plant) diseases.
+##### Ai in agriculture. Detecting Tomato(plant) diseases.
 For effective agricultural management, plant diseases must be promptly and accurately detected. In order to identify tomato illnesses from leaf photos, this research project
 creates an AI-driven application utilising image processing andconvolutional neural networks (CNNs). The programme aims to enhance crop health, boost output, and advance 
 sustainable farming. The programme allows for data-driven decisions, early disease diagnosis, and precision agricultural techniques by utilising cutting-edge technologies.
